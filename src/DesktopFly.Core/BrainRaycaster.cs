@@ -5,7 +5,7 @@ namespace DesktopFly.Core;
 
 public static class BrainRaycaster
 {
-    public static (int[] Picked, Vector3 Anchor, string RegionName)? Pick(
+    public static (int[] Picked, Vector3 Anchor, string RegionName, string Description)? Pick(
         Vector2 mousePixel, float viewWidth, float viewHeight, Matrix4x4 modelMatrix, LIFSim sim)
     {
         var cameraPos = new Vector3(0f, 0.6f, 29f);
@@ -78,7 +78,8 @@ public static class BrainRaycaster
         }
 
         string region = GetRegionName(list, sim);
-        return (list.ToArray(), anchor, region);
+        string description = GetRegionDescription(list, sim);
+        return (list.ToArray(), anchor, region, description);
     }
 
     public static string GetRegionName(IReadOnlyList<int> picked, LIFSim sim)
@@ -101,13 +102,36 @@ public static class BrainRaycaster
         return major switch
         {
             "lc4" or "lplc2" => $"⚡ Looming detectors (LC4/LPLC2){SideSuffix(major)}",
-            "gf" => "⚡ Giant Fiber (DNp01) — escape!",
+            "gf" => "⚡ Giant Fiber (DNp01) — Escape Flight!",
             "dna01" or "dna02" => $"⚡ Steering neurons (DNa01/02){SideSuffix(major)}",
             "dnp09" => "⚡ Walking command (DNp09)",
             "dng11" => "⚡ Grooming command (DNg11)",
             "escw" => "⚡ Escape-wing DNs (DNp02/04/11)",
             "mdn" => "⚡ Moonwalker neurons (MDN)",
             _ => $"⚡ {(sim.Types.Length > picked[0] ? sim.Types[picked[0]] : "central")} neurons"
+        };
+    }
+
+    public static string GetRegionDescription(IReadOnlyList<int> picked, LIFSim sim)
+    {
+        var counts = new Dictionary<string, int>();
+        foreach (int i in picked)
+        {
+            string role = sim.Roles[i];
+            counts[role] = counts.GetValueOrDefault(role, 0) + 1;
+        }
+
+        string major = counts.OrderByDescending(kv => kv.Value).First().Key;
+        return major switch
+        {
+            "lc4" or "lplc2" => "Детекторы зрительного расширения (луминга). Распознают быстро приближающиеся объекты и активируют защитные рефлексы.",
+            "gf" => "Команда экстренного взлета. Активирует прыжковые мышцы лап и резкое опускание крыльев для мгновенного спасения от опасности.",
+            "dna01" or "dna02" => "Нисходящие нейроны подруливания. Асимметрично управляют амплитудой шагов лап, задавая поворот влево или вправо.",
+            "dnp09" => "Командные нейроны ходьбы. Активируют триподную походку и передают двигательный импульс в грудной ганглий.",
+            "dng11" => "Центр умывания (груминга). Запускают ритмичные потирания головы, усиков и глаз передними лапами.",
+            "escw" => "Полетные нейроны побега. Увеличивают частоту и силу взмахов крыльев во время полета.",
+            "mdn" => "Нейроны лунной походки (Moonwalker). Переключают кинематику лап на движение назад и подавляют развороты.",
+            _ => "Интернейроны центрального комплекса. Отвечают за обработку сенсорных сигналов и интеграцию поведенческих состояний."
         };
     }
 }

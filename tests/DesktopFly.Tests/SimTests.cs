@@ -21,7 +21,7 @@ public class SimTests
         Assert.NotNull(data);
         var circuit = data.Value.Circuit;
 
-        var sim = new LIFSim(circuit, null);
+        var sim = new LIFSim(circuit, null, seed: 42);
         _output.WriteLine($"circuit: {sim.N} neurons | loom L/R: {sim.LoomLeft.Count}/{sim.LoomRight.Count}"
               + $" | GF: {sim.GF.Count} | DNa L/R: {sim.DNaL.Count}/{sim.DNaR.Count} | MDN: {sim.MDN.Count}"
               + $" | DNp09: {sim.Fwd.Count} | DNg11: {sim.Groom.Count} | escW: {sim.EscW.Count}"

@@ -1,10 +1,13 @@
-DesktopFly
-DesktopFly.exe
+/DesktopFly
+/DesktopFly.exe
+/*.pdb
+/*.runtimeconfig.json
 .DS_Store
 *.log
 nohup.out
 /*.png
 bin/
 obj/
+publish/
 .vs/
 *.user

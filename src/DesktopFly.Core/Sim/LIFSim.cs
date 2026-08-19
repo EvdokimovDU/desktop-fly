@@ -74,7 +74,7 @@ public class LIFSim
     private int _burstNext = 12_000;
 
     public SpikeBus? SpikeBus { get; }
-    private readonly Random _rng = new();
+    private readonly Random _rng;
 
     private record struct Stim(int[] Idx, float Strength, int DurationMs, int UntilMs);
     private readonly List<Stim> _pendingStims = new();
@@ -91,8 +91,9 @@ public class LIFSim
         }
     }
 
-    public LIFSim(CircuitFile circuit, SpikeBus? spikeBus)
+    public LIFSim(CircuitFile circuit, SpikeBus? spikeBus = null, int? seed = null)
     {
+        _rng = seed.HasValue ? new Random(seed.Value) : new Random();
         SpikeBus = spikeBus;
         N = circuit.Neurons.Length;
         Roles = new string[N];

@@ -32,7 +32,7 @@ public class BehaviorTests
         void Scenario(string name, Action<LIFSim> stim, float hold, Action<Fly>? setup,
                       Func<Fly, bool> check, Func<Fly, string> describe)
         {
-            var sim = new LIFSim(circuit, null);
+            var sim = new LIFSim(circuit, null, seed: 42);
             var builder = new SignalBuilder();
             var fly = new Fly(Vector2.Zero)
             {

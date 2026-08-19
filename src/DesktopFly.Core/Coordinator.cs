@@ -75,16 +75,28 @@ public class Coordinator
     {
         Enqueue(c =>
         {
-            c._loomOverride = 0.6f;
-            foreach (var fly in c.Flies.Skip(1))
+            c._loomOverride = 0.8f;
+            foreach (var fly in c.Flies)
             {
                 if (fly.State != Fly.FlyState.Flying)
-                    fly.StartFlight(c.Bounds);
+                    fly.StartFlight(c.Bounds, escape: true);
             }
         });
     }
 
-    public void EscapeTest() => Enqueue(c => c._loomOverride = 0.6f);
+    public void EscapeTest()
+    {
+        Enqueue(c =>
+        {
+            c._loomOverride = 1.0f;
+            c.Sim?.Stimulate(c.Sim.GF, 0.5f, 40);
+            foreach (var fly in c.Flies)
+            {
+                if (fly.State != Fly.FlyState.Flying)
+                    fly.StartFlight(c.Bounds, escape: true);
+            }
+        });
+    }
 
     public void SetMouse(Vector2? p)
     {
@@ -145,11 +157,14 @@ public class Coordinator
     {
         Enqueue(c =>
         {
-            if (c.Sim == null) return;
-            var first = c.Flies.FirstOrDefault();
-            if (first == null) return;
-            float d = Vector2.Distance(p, first.Pos);
-            float strength = Clamp(1f - d / 320f, 0f, 1f);
+            if (c.Sim == null || c.Flies.Count == 0) return;
+            float minD = float.MaxValue;
+            foreach (var fly in c.Flies)
+            {
+                float d = Vector2.Distance(p, fly.Pos);
+                if (d < minD) minD = d;
+            }
+            float strength = Clamp(1f - minD / 320f, 0f, 1f);
             if (strength > 0.05f)
             {
                 c.Sim.Stimulate(c.Sim.Sens, 0.15f + strength * 0.35f, 130);
@@ -231,8 +246,16 @@ public class Coordinator
         BrainSignals? signals = null;
         if (Sim != null && Flies.Count > 0)
         {
-            var first = Flies[0];
-            var sensory = ComputeLoom(first, mouse, dt);
+            (float L, float R, float Puff) sensory = (0f, 0f, 0f);
+            foreach (var fly in Flies)
+            {
+                var s = ComputeLoom(fly, mouse, dt);
+                if (s.L + s.R + s.Puff > sensory.L + sensory.R + sensory.Puff)
+                {
+                    sensory = s;
+                }
+            }
+
             float decayF = MathF.Exp(-4f * dt);
             _windowLoomL *= decayF;
             _windowLoomR *= decayF;
@@ -240,6 +263,8 @@ public class Coordinator
             Sim.LoomL = Math.Max(sensory.L, _windowLoomL);
             Sim.LoomR = Math.Max(sensory.R, _windowLoomR);
             Sim.AirPuff = Math.Max(sensory.Puff, _typingLevel * 0.30f);
+
+            var first = Flies[0];
             Sim.GaitDrive = first.WalkingIntensity;
             Sim.GaitPhase = first.GaitPhasePublic;
 
@@ -252,17 +277,17 @@ public class Coordinator
             _msAccumulator -= steps;
             Sim.Step(steps);
 
-            var s = _signalBuilder.Make(Sim, dt);
-            s.Tempo = _tempo;
-            s.Sleep = _sleepy;
-            signals = s;
+            var sSignals = _signalBuilder.Make(Sim, dt);
+            sSignals.Tempo = _tempo;
+            sSignals.Sleep = _sleepy;
+            signals = sSignals;
         }
 
         for (int i = 0; i < Flies.Count; i++)
         {
             var fly = Flies[i];
             fly.Terrain = _terrain;
-            fly.Update(dt, Bounds, mouse, i == 0 ? signals : null);
+            fly.Update(dt, Bounds, mouse, signals);
         }
 
         if (Flies.Count > 0)

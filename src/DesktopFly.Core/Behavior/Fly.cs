@@ -238,6 +238,19 @@ public class Fly
             }
         }
 
+        if (State == FlyState.Grooming)
+        {
+            Pitch = -0.15f + 0.08f * MathF.Sin(Time * 24f);
+        }
+        else if (State == FlyState.Sleeping)
+        {
+            Pitch = -0.25f;
+        }
+        else if (State != FlyState.Flying)
+        {
+            Pitch = 0f;
+        }
+
         UpdateLegs(dt);
         UpdateWings(dt);
 
@@ -253,6 +266,10 @@ public class Fly
         if (s == State) return;
         State = s;
         StateAge = 0f;
+        if (s == FlyState.Grooming || s == FlyState.Sleeping || s == FlyState.Idle)
+        {
+            Speed = 0f;
+        }
     }
 
     private void BrainBehavior(BrainSignals s, float dt, Vector2 bounds, Vector2? mouse)
@@ -391,7 +408,7 @@ public class Fly
             {
                 if (Pos.X > l.X0 - 8f && Pos.X < l.X1 + 8f && Math.Abs(Pos.Y - l.Y) < 20f)
                 {
-                    if (Rnd(0f, 1f) < 0.9f * dt)
+                    if (Rnd(0f, 1f) < 0.95f)
                     {
                         CurrentLedge = l;
                         Heading = MathF.Cos(Heading) >= 0 ? 0 : MathF.PI;
@@ -490,12 +507,14 @@ public class Fly
         }
         else if (State == FlyState.Grooming)
         {
+            float groomCycle = Time * 26f;
             foreach (var leg in Model.Legs)
             {
                 if (leg.IsFront)
                 {
-                    leg.Angle = 0.45f + 0.25f * MathF.Sin(Time * 20f + leg.SwingSign * 1.3f);
-                    leg.Lift = 0.55f + 0.15f * MathF.Sin(Time * 22f);
+                    float rub = MathF.Sin(groomCycle + leg.SwingSign * 1.57f);
+                    leg.Angle = 0.55f + 0.35f * rub;
+                    leg.Lift = 0.65f + 0.25f * MathF.Cos(groomCycle);
                 }
                 else
                 {
