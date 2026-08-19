@@ -1,0 +1,13 @@
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\bin\Debug\net10.0\DesktopFly.Core.deps.json
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\bin\Debug\net10.0\DesktopFly.Core.dll
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\bin\Debug\net10.0\DesktopFly.Core.pdb
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.csproj.AssemblyReference.cache
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.AssemblyInfoInputs.cache
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.AssemblyInfo.cs
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.csproj.CoreCompileInputs.cache
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.sourcelink.json
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.dll
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\refint\DesktopFly.Core.dll
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\DesktopFly.Core.pdb
+C:\Users\Professional\Documents\FLY\src\DesktopFly.Core\obj\Debug\net10.0\ref\DesktopFly.Core.dll
