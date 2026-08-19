@@ -149,7 +149,7 @@ public class Coordinator
             var first = c.Flies.FirstOrDefault();
             if (first == null) return;
             float d = Vector2.Distance(p, first.Pos);
-            float strength = Clamp(1f - d / 520f, 0f, 1f);
+            float strength = Clamp(1f - d / 320f, 0f, 1f);
             if (strength > 0.05f)
             {
                 c.Sim.Stimulate(c.Sim.Sens, 0.15f + strength * 0.35f, 130);
@@ -171,11 +171,22 @@ public class Coordinator
         _prevMouse = m;
 
         var rel = m - fly.Pos;
-        float dist = Math.Max(20f, rel.Length());
+        float dist = Math.Max(15f, rel.Length());
         float approach = -(rel.X * _mouseVel.X + rel.Y * _mouseVel.Y) / dist;
 
-        float loom = Clamp(approach / dist * 6f, 0f, 1f) * Clamp(1f - dist / 800f, 0f, 1f);
-        loom += Clamp((130f - dist) / 130f, 0f, 1f) * 0.5f;
+        // Visual Looming: active within 260 px, proportional to relative approach speed / distance
+        float loom = 0f;
+        if (approach > 50f && dist < 260f)
+        {
+            loom = Clamp(approach / dist * 4.5f, 0f, 1f) * Clamp(1f - dist / 260f, 0f, 1f);
+        }
+
+        // Close proximity threat: within 70 px
+        if (dist < 70f)
+        {
+            loom += Clamp((70f - dist) / 70f, 0f, 1f) * 0.6f;
+        }
+
         loom = Clamp(loom + _loomOverride, 0f, 1f);
 
         var f = new Vector2(MathF.Cos(fly.Heading), MathF.Sin(fly.Heading));
@@ -184,7 +195,14 @@ public class Coordinator
         float lw = Clamp(0.5f + 0.5f * crossZ, 0.12f, 1f);
         float rw = Clamp(0.5f - 0.5f * crossZ, 0.12f, 1f);
 
-        float puff = Clamp(_mouseVel.Length() / 1500f, 0f, 1f) * Clamp(1f - dist / 500f, 0f, 1f);
+        // Air puff: fast cursor sweep within 180 px
+        float speed = _mouseVel.Length();
+        float puff = 0f;
+        if (speed > 250f && dist < 180f)
+        {
+            puff = Clamp((speed - 250f) / 1200f, 0f, 1f) * Clamp(1f - dist / 180f, 0f, 1f);
+        }
+
         return (loom * lw, loom * rw, puff);
     }
 
