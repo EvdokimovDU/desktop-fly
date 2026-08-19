@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-<b>An interactive 3D simulation of a fruit fly (Drosophila melanogaster) for Windows 10/11 and macOS</b><br>
+<b>An interactive 3D simulation of a fruit fly (Drosophila melanogaster) for Windows 10/11</b><br>
 The fly's behavior is driven in real-time by a spiking neural network (LIF) based on the real <a href="https://codex.flywire.ai">FlyWire v783</a> whole-brain connectome.
 </p>
 
@@ -29,7 +29,7 @@ The fly's brain window: 23,210 real neuron soma positions from FlyWire v783 with
 
 ---
 
-## 🌟 Key Features of the Windows Port (C# / .NET 10 + OpenGL)
+## 🌟 Key Features (C# / .NET 10 + OpenGL)
 
 - **Dual Viewports in a Single Context (1200×800 Window)**:
   - **Left Viewport (840×800)**: Procedural 3D fly with realistic tripod locomotion kinematics, wingbeats, grooming, and sleep postures.
@@ -80,7 +80,9 @@ The fly's brain window: 23,210 real neuron soma positions from FlyWire v783 with
 
 ## 🚀 Build & Run
 
-### Windows 10 / 11 x64 (.NET 10 SDK)
+### Requirements
+* **Windows 10 / 11 x64**
+* **.NET 10 SDK** (or run precompiled `DesktopFly.exe`)
 
 ```bat
 # 1. Clone repository
@@ -97,13 +99,6 @@ run.cmd
 Or run directly:
 ```bat
 .\DesktopFly.exe
-```
-
-### macOS 13+ (Swift 5.9+)
-
-```sh
-./build.sh
-./DesktopFly
 ```
 
 ---

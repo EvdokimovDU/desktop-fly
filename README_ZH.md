@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-<b>基于真实果蝇（Drosophila melanogaster）全脑连接组驱动的桌面 3D 仿真程序（支持 Windows 10/11 与 macOS）</b><br>
+<b>基于真实果蝇（Drosophila melanogaster）全脑连接组驱动的桌面 3D 仿真程序（Windows 10/11）</b><br>
 果蝇的行为由基于 <a href="https://codex.flywire.ai">FlyWire v783</a> 真实全脑连接组构建的 1 kHz 脉冲神经网络（LIF）实时驱动。
 </p>
 
@@ -29,7 +29,7 @@
 
 ---
 
-## 🌟 Windows 版本主要特性（C# / .NET 10 + OpenGL）
+## 🌟 主要特性（C# / .NET 10 + OpenGL）
 
 - **单上下文双视口渲染（1200×800 窗口）**：
   - **左侧视口 (840×800)**：程序化 3D 果蝇模型，具备三角步态行走动力学、翅膀扇动、梳理触角与复眼以及睡眠姿态。
@@ -80,7 +80,9 @@
 
 ## 🚀 构建与运行
 
-### Windows 10 / 11 x64 (.NET 10 SDK)
+### 系统要求
+* **Windows 10 / 11 x64**
+* **.NET 10 SDK** (或直接运行预编译的 `DesktopFly.exe`)
 
 ```bat
 # 1. 克隆代码仓库
@@ -97,13 +99,6 @@ run.cmd
 或直接双击运行编译好的程序：
 ```bat
 .\DesktopFly.exe
-```
-
-### macOS 13+ (Swift 5.9+)
-
-```sh
-./build.sh
-./DesktopFly
 ```
 
 ---
