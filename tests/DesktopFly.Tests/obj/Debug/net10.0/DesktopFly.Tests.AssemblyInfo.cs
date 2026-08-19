@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DesktopFly.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7014d37d7e252a3f16b173aca9b49f6f6c91d3b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+229545787de21fef863100307b293252d2658237")]
 [assembly: System.Reflection.AssemblyProductAttribute("DesktopFly.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DesktopFly.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

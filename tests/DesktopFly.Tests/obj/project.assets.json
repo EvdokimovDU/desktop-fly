@@ -298,41 +298,6 @@
           }
         }
       },
-      "SixLabors.ImageSharp/4.1.0": {
-        "type": "package",
-        "dependencies": {
-          "System.IO.Hashing": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/SixLabors.ImageSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/SixLabors.ImageSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "build/_._": {}
-        }
-      },
-      "System.IO.Hashing/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/System.IO.Hashing.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/System.IO.Hashing.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
       "xunit/2.9.3": {
         "type": "package",
         "dependencies": {
@@ -432,9 +397,6 @@
       "DesktopFly.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
-        "dependencies": {
-          "SixLabors.ImageSharp": "4.1.0"
-        },
         "compile": {
           "bin/placeholder/DesktopFly.Core.dll": {}
         },
@@ -810,55 +772,6 @@
         "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
-      ]
-    },
-    "SixLabors.ImageSharp/4.1.0": {
-      "sha512": "7PfVxHQsa77VmO+ZcnkrcwsjZHs4ZIdAYkjKesf71glMlrAwKjjSh5Nz5F5rwfVEOF5eAh/F7k6Fel8CK3V1YA==",
-      "type": "package",
-      "path": "sixlabors.imagesharp/4.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "build/SixLabors.ImageSharp.props",
-        "build/SixLabors.ImageSharp.targets",
-        "build/net472/SixLabors.Licensing.dll",
-        "build/net8.0/SixLabors.Licensing.dll",
-        "lib/net8.0/SixLabors.ImageSharp.dll",
-        "lib/net8.0/SixLabors.ImageSharp.xml",
-        "sixlabors.imagesharp.128.png",
-        "sixlabors.imagesharp.4.1.0.nupkg.sha512",
-        "sixlabors.imagesharp.nuspec"
-      ]
-    },
-    "System.IO.Hashing/8.0.0": {
-      "sha512": "ne1843evDugl0md7Fjzy6QjJrzsjh46ZKbhf8GwBXb5f/gw97J4bxMs0NQKifDuThh/f0bZ0e62NPl1jzTuRqA==",
-      "type": "package",
-      "path": "system.io.hashing/8.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "PACKAGE.md",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/net461/System.IO.Hashing.targets",
-        "buildTransitive/net462/_._",
-        "buildTransitive/net6.0/_._",
-        "buildTransitive/netcoreapp2.0/System.IO.Hashing.targets",
-        "lib/net462/System.IO.Hashing.dll",
-        "lib/net462/System.IO.Hashing.xml",
-        "lib/net6.0/System.IO.Hashing.dll",
-        "lib/net6.0/System.IO.Hashing.xml",
-        "lib/net7.0/System.IO.Hashing.dll",
-        "lib/net7.0/System.IO.Hashing.xml",
-        "lib/net8.0/System.IO.Hashing.dll",
-        "lib/net8.0/System.IO.Hashing.xml",
-        "lib/netstandard2.0/System.IO.Hashing.dll",
-        "lib/netstandard2.0/System.IO.Hashing.xml",
-        "system.io.hashing.8.0.0.nupkg.sha512",
-        "system.io.hashing.nuspec",
-        "useSharedDesignerContext.txt"
       ]
     },
     "xunit/2.9.3": {

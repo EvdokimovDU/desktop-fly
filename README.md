@@ -49,6 +49,17 @@ flight, grooming, and sleep postures.
 
 ## Installation
 
+### Windows 10+ (.NET 8+ / .NET 10)
+Requirements: **Windows 10 / 11 x64**, .NET SDK (8.0+ or 10.0+).
+
+```sh
+git clone https://github.com/DenisSergeevitch/desktop-fly.git
+cd desktop-fly
+build.cmd
+dotnet run --project src/DesktopFly
+```
+
+### macOS (macOS 13+)
 Requirements: **macOS 13+**, Xcode Command Line Tools (Swift 5.9+).
 No permissions or entitlements needed — everything it senses
 (cursor, window frames, clicks-as-taps, thermal state) is permission-free.
@@ -60,7 +71,7 @@ cd desktop-fly
 ./DesktopFly
 ```
 
-A 🪰 item appears in the menu bar; quit from there. The fly wanders your
+A 🪰 item appears in the system tray / menu bar; quit from there. The fly wanders your
 desktop on a transparent, click-through overlay — it never intercepts your
 mouse or keyboard.
 
@@ -127,7 +138,16 @@ cd - && python3 etl.py /tmp/flywire
 ```
 
 ## Diagnostics
+ 
+**Windows 10:**
+```sh
+dotnet run --project src/DesktopFly -- --simtest        # circuit invariants: GF silent at rest, 4 ms loom latency, ...
+dotnet run --project src/DesktopFly -- --behaviortest   # 17 end-to-end checks: stimulate neurons -> body reacts
+dotnet run --project src/DesktopFly -- --snapshot f.png  # offscreen fly render
+dotnet run --project src/DesktopFly -- --brainshot b.png # offscreen brain render
+```
 
+**macOS:**
 ```sh
 ./DesktopFly --simtest        # circuit invariants: GF silent at rest, 4 ms loom latency, ...
 ./DesktopFly --behaviortest   # 17 end-to-end checks: stimulate neurons -> body reacts

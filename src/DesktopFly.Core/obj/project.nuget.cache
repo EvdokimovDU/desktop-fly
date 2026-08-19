@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EvNpU2PL/68=",
+  "dgSpecHash": "x7DFtpeQXzU=",
   "success": true,
   "projectFilePath": "C:\\Users\\Professional\\Documents\\FLY\\src\\DesktopFly.Core\\DesktopFly.Core.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Professional\\.nuget\\packages\\sixlabors.imagesharp\\4.1.0\\sixlabors.imagesharp.4.1.0.nupkg.sha512",
-    "C:\\Users\\Professional\\.nuget\\packages\\system.io.hashing\\8.0.0\\system.io.hashing.8.0.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
