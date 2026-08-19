@@ -1,5 +1,10 @@
 DesktopFly
+DesktopFly.exe
 .DS_Store
 *.log
 nohup.out
 /*.png
+bin/
+obj/
+.vs/
+*.user
